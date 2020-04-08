@@ -141,7 +141,9 @@ void CodeSequence::cleanchar_(string &data) {
         cursor = p + 1;
         if(p == 0) continue;
         size_t start = data.find_last_not_of("-_." + alnum, p - 1);
+        if(start == string::npos) break;
         size_t end = data.find_first_not_of("-_." + alnum, p + 1);
+        if(end == string::npos) break;
         if(p - start <= 64 && end - p <= 510) {
             data.replace(start, end - start, " ");
             cursor = start + 1;
